@@ -17,14 +17,17 @@ api = tweepy.API(auth)
 
 # woied INDIA
 woeid = 2282863
-trends = api.get_place_trends(woeid)
+
 analyzer = SentimentIntensityAnalyzer()
 
 def updateTweets():
     result = []
+    trends = api.get_place_trends(woeid)
     for trend in trends[0]['trends'][:5]:
         public_tweets = api.search_tweets(trend['name'],result_type="recent",count=5,tweet_mode = "extended")
         for tweet in public_tweets:
+            if tweet.retweeted:
+                continue
             # tweet url https://twitter.com/twitter/statuses/{id}
             text = GoogleTranslator(source='auto', target='en').translate(tweet.full_text)
             # analysis = TextBlob(text)
@@ -43,4 +46,14 @@ def updateTweets():
             result.append(data)
     return result
             
-            
+
+def getTweet(id):
+    tweet = api.lookup_statuses(id=[id,])[0]
+    text = GoogleTranslator(source='auto', target='en').translate(tweet.text)
+    sentiment_dict = analyzer.polarity_scores(text)
+    # print(sentiment_dict)
+    sentiment_dict["url"] = f"https://twitter.com/twitter/statuses/{tweet.id}"
+    sentiment_dict["pos"] = round(sentiment_dict["pos"]*100,2)
+    sentiment_dict["neg"] = round(sentiment_dict["neg"]*100,2)
+    sentiment_dict["neu"] = round(sentiment_dict["neu"]*100,2)
+    return sentiment_dict

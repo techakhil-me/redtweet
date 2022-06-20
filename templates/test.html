@@ -69,32 +69,37 @@
 
       <!-- end Navbar -->   
 
-        <div class="flex flex-wrap justify-evenly gap-4 p-4 w-full">
-            {% for tweet in tweets %}
-    <div class="w-full md:max-w-[30%] max-w-full bg-white shadow-xl p-4 rounded-2xl">
-  <div class="relative gap-4 flex flex-col min-w-0 break-words bg-transparent border-0  rounded-2xl bg-clip-border">
-    <div class="relative w-full h-72 overflow-y-scroll">
-        <blockquote class="twitter-tweet shadow-xl rounded-2xl"><a href="{{tweet.url}}"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
-    <div class="flex w-full h-full">
-      <form method="POST" action="/high" class="flex items-center justify-between w-full gap-2">
-          {% csrf_token %}
-          <button type="button" class="inline-block px-6 py-3 font-bold text-center uppercase align-middle transition-all bg-transparent border rounded-lg cursor-pointer border-lime-500 leading-pro text-size-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs text-lime-500 w-full">Mark it safe</button>
-          <input name="id" value={{tweet.id}} type="hidden">
-          <button type="submit" class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-red-500 rounded-lg cursor-pointer leading-pro text-size-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs w-full">Take action</button>
-        
-      </form>
-    </div>
-  </div>
+        <form action="/test" method="POST" class="flex  justify-evenly gap-4 p-4 w-full">
+            {% csrf_token %}
+            <div class="relative flex gap-4 flex-wrap items-stretch w-full transition-all rounded-lg ease-soft">
+    <span class="text-size-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </span>
+    <input name="link" type="text" class="pl-8.75 text-size-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Paste tweet link..." />
+  <button type="submit" class="font-bol bg-gradient-to-r from-fuchsia-400 to-purple-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md">
+  Analyze
+</button>
 </div>
-      
-{% endfor %}
-            </div>
-
-
-
-
-
+        </form>
+     
+{% if url %}<div class="flex justify-center gap-20 p-4 mx-auto">
+<blockquote class="twitter-tweet shadow-xl rounded-2xl"><a href="{{url}}"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   <div class="flex flex-col justify-around">
+    <div class="w-full flex flex-col text-xl items-center">
+        <div class="flex gap-4 items-center text-3xl font-semibold"><i class="fas fa-angry text-5xl text-red-500"></i>{{neg}}%</div>
+        <div class="pt-3 tracking-widest">Negative</div>
+    </div>
+    <div class="w-full flex flex-col text-xl items-center">
+        <div class="flex gap-4 items-center text-3xl font-semibold"><i class="fas fa-smile text-5xl text-green-500"></i>{{pos}}%</div>
+        <div class="pt-3 tracking-widest">Positive</div>
+    </div>
+    <div class="w-full flex flex-col text-xl items-center">
+        <div class="flex gap-4 items-center text-3xl font-semibold"><i class="fas fa-meh text-5xl text-yellow-500"></i>{{neu}}%</div>
+        <div class="pt-3 tracking-widest">Neutral</div>
+    </div>
+</div> 
+</div>
+{% endif %}
 
 <!--         footer  -->
         <footer class="pt-4">
