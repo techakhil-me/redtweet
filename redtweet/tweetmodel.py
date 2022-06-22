@@ -1,15 +1,15 @@
+import os
 import tweepy
 from textblob import TextBlob
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
 
 # confidential
-consumer_secret = "w3gDNOGJN7NNfvdN8UhBCEoC7sT3yAAQxBgSBKWvMrpgsB4Y4s"
-consumer_key = "urwyOZqtO59hNkSF4RYcqw910"
-access_token = "1324255654471561216-ZRQEhUCEa1Z8CMNUUWA3ElvODViuyN"
-access_token_secret = "cEvn44hfzb7knQAdf0D3w4ZOG3Wc8WLYbERzkgCZ7ks5S"
-bearer_token = "AAAAAAAAAAAAAAAAAAAAALtQdwEAAAAAdqsJ2yfd1jHqrX5h5M%2BCjg206xI%3DUdFIwnO342D5logDEqDQuS0bQ93RkKfKBvC1ebNIXnVADlq3Ef"
-
+consumer_secret = os.environ['consumer_secret']
+consumer_key = os.environ['consumer_key']
+access_token = os.environ['access_token']
+access_token_secret = os.environ['access_token_secret']
+bearer_token = os.environ['bearer_token']
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)

@@ -36,6 +36,28 @@ def High(request):
     context = {"tweets":tweets}
     return render(request,'tweets.html',context=context)
 
+def Medium(request):
+    if request.method == "POST":
+        id = request.POST['id']
+        tweet = Tweets.objects.get(id=id)
+        tweet.action = True
+        tweet.save()
+        print(id)
+    tweets = Tweets.objects.filter(polarity="medium").filter(action=False)
+    context = {"tweets":tweets}
+    return render(request,'tweets.html',context=context)
+
+def Low(request):
+    if request.method == "POST":
+        id = request.POST['id']
+        tweet = Tweets.objects.get(id=id)
+        tweet.action = True
+        tweet.save()
+        print(id)
+    tweets = Tweets.objects.filter(polarity="low").filter(action=False)
+    context = {"tweets":tweets}
+    return render(request,'tweets.html',context=context)
+    
 def Test(request):
     context = {"url":False}
     if request.method == "POST":
