@@ -1,6 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import tweetmodel
 from redtweet.models import Tweets
+import re
+
+
+
+
+
+
+
 # Create your views here.
 def Home(request):
     high = Tweets.objects.filter(polarity="high").filter(action=False)
@@ -26,38 +34,29 @@ def Update(request):
     return render(request,'update.html',context=context)
 
 def High(request):
-    if request.method == "POST":
-        id = request.POST['id']
-        tweet = Tweets.objects.get(id=id)
-        tweet.action = True
-        tweet.save()
-        print(id)
     tweets = Tweets.objects.filter(polarity="high").filter(action=False)
     context = {"tweets":tweets}
     return render(request,'tweets.html',context=context)
 
 def Medium(request):
-    if request.method == "POST":
-        id = request.POST['id']
-        tweet = Tweets.objects.get(id=id)
-        tweet.action = True
-        tweet.save()
-        print(id)
     tweets = Tweets.objects.filter(polarity="medium").filter(action=False)
     context = {"tweets":tweets}
     return render(request,'tweets.html',context=context)
 
 def Low(request):
+    tweets = Tweets.objects.filter(polarity="low").filter(action=False)
+    context = {"tweets":tweets}
+    return render(request,'tweets.html',context=context)
+
+def Action(request):
     if request.method == "POST":
         id = request.POST['id']
         tweet = Tweets.objects.get(id=id)
         tweet.action = True
         tweet.save()
         print(id)
-    tweets = Tweets.objects.filter(polarity="low").filter(action=False)
-    context = {"tweets":tweets}
-    return render(request,'tweets.html',context=context)
-    
+    return redirect("/")
+
 def Test(request):
     context = {"url":False}
     if request.method == "POST":
@@ -65,4 +64,19 @@ def Test(request):
         id = link.split('/')[-1]
         context = tweetmodel.getTweet(id)
     return render(request,'test.html',context=context)
-    
+
+def Profile(request):
+    context = {"url":False}
+    if request.method == "POST":
+        link = request.POST['link']
+        id = link.split('/')[-1]
+        context = tweetmodel.getTweet(id)
+    return render(request,'profile.html',context=context)
+
+def Hashtag(request):
+    context = {"url":False}
+    if request.method == "POST":
+        link = request.POST['link']
+        id = link.split('/')[-1]
+        context = tweetmodel.getTweet(id)
+    return render(request,'test.html',context=context)

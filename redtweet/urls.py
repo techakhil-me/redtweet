@@ -10,5 +10,8 @@ urlpatterns = [
     path('medium', views.Medium, name="Medium"),
     path('low', views.Low, name="Low"),
     path('test', views.Test, name="Test"),
+    path('action', views.Action, name="Action"),
+    path('profile', views.Profile, name="Profile"),
+    path('hashtag', views.Hashtag, name="Hashtag"),
     # path('login', views.Login, name="login"),   
 ]
