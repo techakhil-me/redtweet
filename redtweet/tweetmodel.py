@@ -1,10 +1,11 @@
 import os
+import pandas as pd
 import tweepy
-from textblob import TextBlob
+# from textblob import TextBlob
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
-import pandas as pd
-import numpy as np 
+
+# import numpy as np 
 
 
 
