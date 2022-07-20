@@ -1,22 +1,22 @@
-# Python on Replit
+# redTweet -  Dashboard to filter hateful tweets using Sentimental Analysis
+It fastens the process for filtering negative and offensive tweets, making it easier for officials to take action rapidly hence reducing it countereffects
 
-This is a template to get you started with Python on Replit. It's ready to go so you can just hit run and start coding!
+![Levels](https://assets.devfolio.co/hackathons/fae87cb64d864bddafcf5b87b24a3897/projects/22ef31940c954273a434962928a185d1/e796e58e-cb16-41da-a210-20d52192ffda.png)
+![Levels](https://assets.devfolio.co/hackathons/fae87cb64d864bddafcf5b87b24a3897/projects/22ef31940c954273a434962928a185d1/a1b36a67-eded-4b3c-b7ef-81ee7a8c8c5e.png)
+# Check it out
+simply click on this ['https://redtweet-f.dtbots.repl.co'](link)
 
-## Running the repl
+# Challenges we ran into
+Developing an accurate model for classifying the tweets. Coming up with relevant data and also recording the video
 
-Simply hit run! You can edit the run command from the `.replit` file.
+## Tech Stack
+- django
+- html/css
+- Javascript
+- Python
+- Sql
+- Machine learning
 
-## Installing packages
 
-To add packages to your repl, you can just import directly in the file you want to use the package in, and it will automatically be installed when you press the run button. Like below:
-```python
-import math
-import pandas as pd
-from flask import Flask
-```
-
-You could also install packages by using the Replit packager interface in the left sidebar.
-
-## Help
-
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Feel free to report bugs and give us feedback [here](https://replit.com/support).
+## Setup
+- create a virtual environment, install the requirements and you are good to go!
